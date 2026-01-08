@@ -44,9 +44,9 @@ with tab1:
     O objetivo do sistema é fornecer **previsões precisas e rápidas**, apoiando decisões clínicas e contribuindo para ações preventivas e planejamento de tratamentos.
     """)
 
-# ===============================
+
+
 # ABA 2 — ANÁLISE EXPLORATÓRIA
-# ===============================
 with tab2:
     st.header("Análise Exploratória dos Dados")
     st.markdown("\n")
@@ -54,7 +54,7 @@ with tab2:
     # Criar duas colunas
     col1, col2 = st.columns(2)
 
-    # ------------------- Coluna 1 -------------------
+    #Coluna 1 
     with col1:
         # Distribuição das classes de obesidade
         st.markdown("### Distribuição das classes de obesidade")
@@ -95,7 +95,7 @@ with tab2:
         plt.tight_layout()
         st.pyplot(plt)
 
-    # ------------------- Coluna 2 -------------------
+    #Coluna 2
     with col2:
         # Obesidade x Frequência de Atividade Física (FAF)
         st.markdown("### Obesidade x Atividade Física")

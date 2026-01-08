@@ -12,30 +12,77 @@ best_model = joblib.load("modelo_obesidade.pkl")
 # Configuração da página
 st.set_page_config(page_title="Sistema Preditivo de Obesidade", layout="wide")
 
+# ===============================
 # Criar abas
+# ===============================
 tab1, tab2, tab3, tab4 = st.tabs([
-    "1️⃣ Problema de Negócio", 
-    "2️⃣ Análise Exploratória", 
-    "3️⃣ Sistema Preditivo", 
-    "4️⃣ Conclusões"
+    "Problema de Negócio", 
+    "Análise Exploratória", 
+    "Sistema Preditivo", 
+    "Conclusões"
 ])
+
+# ===============================
+# Estilo para os títulos dentro das abas
+# ===============================
+titulo_estilo = """
+    <div style="
+        background-color: #f0f2f6; 
+        padding: 10px; 
+        border-radius: 8px;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    ">
+        <h2 style="color: #0f4c81; font-weight: bold;">{}</h2>
+    </div>
+"""
+
+# Exemplo de uso dentro de cada aba:
+with tab1:
+    st.markdown(titulo_estilo.format("Problema de Negócio"), unsafe_allow_html=True)
+    st.markdown("""
+    Aqui você explica o contexto do problema, a importância da obesidade, a base de dados usada e os objetivos do sistema preditivo.
+    """)
+
+with tab2:
+    st.markdown(titulo_estilo.format("Análise Exploratória"), unsafe_allow_html=True)
+    st.markdown("Gráficos e insights sobre os dados entram aqui.")
+
+with tab3:
+    st.markdown(titulo_estilo.format("Sistema Preditivo"), unsafe_allow_html=True)
+    st.markdown("Formulário para previsão de obesidade aqui.")
+
+with tab4:
+    st.markdown(titulo_estilo.format("Conclusões"), unsafe_allow_html=True)
+    st.markdown("Resumo do projeto, insights do modelo e recomendações.")
+
 
 # ===============================
 # ABA 1 — PROBLEMA DE NEGÓCIO
 # ===============================
+# ===============================
+# ABA 1 — PROBLEMA DE NEGÓCIO
+# ===============================
 with tab1:
-    st.header("Contextualização e Problema de Negócio")
+    st.header("Contexto e Problema de Negócio")
+    
     st.markdown("""
-    O objetivo deste projeto é desenvolver um **sistema preditivo de obesidade**, auxiliando equipes médicas na identificação do nível de obesidade de pacientes.
+    A obesidade é uma condição multifatorial que representa um importante problema de saúde pública. 
+    Ela está associada a diversas doenças crônicas, como diabetes, hipertensão, doenças cardiovasculares e outras complicações de saúde. 
+    Identificar precocemente o nível de obesidade de um indivíduo pode auxiliar profissionais de saúde a recomendar intervenções adequadas, 
+    prevenindo o agravamento de condições médicas.
 
-    A obesidade é uma condição multifatorial, influenciada por:
-    - Hábitos alimentares
-    - Nível de atividade física
-    - Dados demográficos e físicos
-    - Histórico familiar
+    Este projeto faz parte do **Tech Challenge – Fase 4 da pós-graduação em Data Analytics** e tem como objetivo desenvolver um **sistema preditivo de obesidade**. 
+    A ferramenta foi criada para **auxiliar a equipe médica** na identificação do nível de obesidade de pacientes, 
+    usando dados demográficos, físicos e comportamentais de forma objetiva e baseada em dados.
 
-    O sistema busca fornecer informações consistentes, baseadas em dados, para apoiar decisões clínicas.
+    A base utilizada é o conjunto de dados **Obesity.csv**, que contém informações sobre idade, gênero, peso, altura, hábitos alimentares, nível de atividade física, histórico familiar e outros fatores que influenciam o desenvolvimento da obesidade.
+
+    O problema é tratado como uma **classificação multiclasse**, pois o nível de obesidade é categorizado em diferentes classes:  
+    por exemplo, "Peso Normal", "Sobrepeso" e "Obesidade" (em diferentes níveis).  
+
+    O objetivo do sistema é fornecer **previsões precisas e rápidas**, apoiando decisões clínicas e contribuindo para ações preventivas e planejamento de tratamentos.
     """)
+
 
 # ===============================
 # ABA 2 — ANÁLISE EXPLORATÓRIA (duas colunas)
@@ -214,11 +261,10 @@ with tab4:
 
     st.markdown("""
     - O modelo final escolhido foi o **Gradient Boosting Classifier**, por apresentar melhor desempenho na classificação multiclasse.
-    - A acurácia do modelo atingiu mais de **75%**, cumprindo os critérios do desafio.
+    - A acurácia do modelo atingiu mais de **75%**.
     - As variáveis mais relevantes foram:
         - Peso  
         - Atividade física (FAF)  
         - Hábitos alimentares (FAVC, FCVC, CAEC, CALC)  
         - Histórico familiar (family_history)
-    - O sistema atua como **ferramenta de apoio à decisão clínica**, auxiliando ações preventivas, acompanhamento de pacientes e melhor gestão da saúde.
-    """)
+  

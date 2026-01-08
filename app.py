@@ -44,7 +44,7 @@ with tab2:
     st.header("Análise Exploratória dos Dados")
 
     st.markdown("### Distribuição das classes de obesidade")
-    st.bar_chart(df['Obesity_level'].value_counts())
+    st.bar_chart(df['Obesity'].value_counts())
 
     st.markdown("### Estatísticas gerais das variáveis numéricas")
     st.dataframe(df.describe())

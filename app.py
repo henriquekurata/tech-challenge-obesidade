@@ -117,7 +117,7 @@ with tab3:
     st.header("Sistema Preditivo de Obesidade")
     st.markdown("""
     Preencha os dados do paciente abaixo e clique em **Prever Nível de Obesidade**.
-    As opções de "Pouco", "Moderado" e "Muito" têm valores de referência para facilitar a escolha.
+    As opções "Pouco", "Moderado" e "Muito" incluem valores de referência.
     """)
     st.markdown("\n")
 
@@ -125,7 +125,7 @@ with tab3:
         col1, col2, col3 = st.columns(3)
 
         # ---------------------
-        # Coluna 1
+        # Coluna 1 — Dados Pessoais
         # ---------------------
         with col1:
             Gender = st.selectbox("Gênero", ["Male", "Female"])
@@ -134,7 +134,7 @@ with tab3:
             Weight = st.slider("Peso (kg)", 40.0, 160.0, 70.0)
 
         # ---------------------
-        # Coluna 2
+        # Coluna 2 — Hábitos Alimentares
         # ---------------------
         with col2:
             family_history = st.selectbox("Histórico familiar de obesidade", ["yes", "no"])
@@ -145,7 +145,7 @@ with tab3:
             FCVC = {"Pouco (1 vez/dia)": 1, "Moderado (2 vezes/dia)": 2, "Muito (3 vezes/dia)": 3}[FCVC_cat]
 
             NCP_options = ["Pouco (1 refeição)", "Moderado (2-3 refeições)", "Muito (4 refeições)"]
-            NCP_cat = st.selectbox("Número de refeições principais (NCP)", NCP_options)
+            NCP_cat = st.selectbox("Número de refeições (NCP)", NCP_options)
             NCP = {"Pouco (1 refeição)": 1, "Moderado (2-3 refeições)": 2, "Muito (4 refeições)": 3}[NCP_cat]
 
             CH2O_options = ["Pouco (1 copo/dia)", "Moderado (2 copos/dia)", "Muito (3 copos/dia)"]
@@ -153,11 +153,11 @@ with tab3:
             CH2O = {"Pouco (1 copo/dia)": 1, "Moderado (2 copos/dia)": 2, "Muito (3 copos/dia)": 3}[CH2O_cat]
 
         # ---------------------
-        # Coluna 3
+        # Coluna 3 — Atividade e Estilo de Vida
         # ---------------------
         with col3:
             FAF_options = ["Pouco (0-1x/semana)", "Moderado (2x/semana)", "Muito (3x+/semana)"]
-            FAF_cat = st.selectbox("Frequência de atividade física (FAF)", FAF_options)
+            FAF_cat = st.selectbox("Atividade física (FAF)", FAF_options)
             FAF = {"Pouco (0-1x/semana)": 0, "Moderado (2x/semana)": 1, "Muito (3x+/semana)": 2}[FAF_cat]
 
             TUE_options = ["Pouco (0-1h/dia)", "Moderado (1-2h/dia)", "Muito (3h+/dia)"]

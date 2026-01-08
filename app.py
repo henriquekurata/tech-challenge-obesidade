@@ -44,9 +44,99 @@ with tab1:
     O objetivo do sistema é fornecer **previsões precisas e rápidas**, apoiando decisões clínicas e contribuindo para ações preventivas e planejamento de tratamentos.
     """)
 
+# ===============================
+# ABA 2 — ANÁLISE EXPLORATÓRIA
+# ===============================
+with tab2:
+    st.header("Análise Exploratória dos Dados")
+    st.markdown("\n")
+
+    # Criar duas colunas
+    col1, col2 = st.columns(2)
+
+    # ------------------- Coluna 1 -------------------
+    with col1:
+        # Distribuição das classes de obesidade
+        st.markdown("### Distribuição das classes de obesidade")
+        plt.figure(figsize=(4, 3))
+        sns.countplot(
+            data=df,
+            x="Obesity",
+            palette="pastel",
+            order=df['Obesity'].value_counts().index
+        )
+        plt.title("Pacientes por obesidade", fontsize=10)
+        plt.xlabel("Obesidade", fontsize=9)
+        plt.ylabel("Contagem", fontsize=9)
+        plt.xticks(rotation=30, fontsize=8)
+        plt.yticks(fontsize=8)
+        plt.tight_layout()
+        st.pyplot(plt)
+
+        st.markdown("\n")
+
+        # Scatter plot: Idade x Peso
+        st.markdown("### Idade x Peso")
+        plt.figure(figsize=(4, 3))
+        sns.scatterplot(
+            data=df,
+            x="Age",
+            y="Weight",
+            hue="Obesity",
+            palette="bright",
+            s=40
+        )
+        plt.title("Idade vs Peso", fontsize=10)
+        plt.xlabel("Idade (anos)", fontsize=9)
+        plt.ylabel("Peso (kg)", fontsize=9)
+        plt.xticks(fontsize=8)
+        plt.yticks(fontsize=8)
+        plt.legend(fontsize=7, loc='upper right')
+        plt.tight_layout()
+        st.pyplot(plt)
+
+    # ------------------- Coluna 2 -------------------
+    with col2:
+        # Obesidade x Frequência de Atividade Física (FAF)
+        st.markdown("### Obesidade x Atividade Física")
+        plt.figure(figsize=(4, 3))
+        sns.boxplot(
+            data=df,
+            x="Obesity",
+            y="FAF",
+            palette="Set2"
+        )
+        plt.title("FAF por obesidade", fontsize=10)
+        plt.xlabel("Obesidade", fontsize=9)
+        plt.ylabel("Frequência de Atividade Física", fontsize=9)
+        plt.xticks(rotation=30, fontsize=8)
+        plt.yticks(fontsize=8)
+        plt.tight_layout()
+        st.pyplot(plt)
+
+        st.markdown("\n")
+
+        # Heatmap de correlação
+        st.markdown("### Correlação entre variáveis numéricas")
+        variaveis = ["Age", "Height", "Weight", "FCVC", "NCP", "CH2O", "FAF", "TUE"]
+        dados_corr = df[variaveis]
+        corr_matrix = dados_corr.corr()
+        plt.figure(figsize=(5, 4))
+        sns.heatmap(
+            corr_matrix,
+            annot=True,
+            cmap="coolwarm",
+            fmt=".2f",
+            linewidths=0.5,
+            cbar=True
+        )
+        plt.title("Correlação das variáveis", fontsize=10)
+        plt.xticks(fontsize=8)
+        plt.yticks(fontsize=8)
+        plt.tight_layout()
+        st.pyplot(plt)
 
 
-# ABA 2 — ANÁLISE EXPLORATÓRIA with tab2: st.header("Análise Exploratória dos Dados") st.markdown("\n") # Criar duas colunas col1, col2 = st.columns(2) # Coluna 1 with col1: # Distribuição das classes de obesidade st.markdown("### Distribuição das classes de obesidade") plt.figure(figsize=(4, 3)) sns.countplot(data=df, x="Obesity", palette="pastel", order=df['Obesity'].value_counts().index) plt.title("Pacientes por obesidade", fontsize=10) plt.xlabel("Obesidade", fontsize=9) plt.ylabel("Contagem", fontsize=9) plt.xticks(rotation=30, fontsize=8) plt.yticks(fontsize=8) plt.tight_layout() st.pyplot(plt) st.markdown("\n") # Scatter plot: Idade x Peso st.markdown("### Idade x Peso") plt.figure(figsize=(4, 3)) sns.scatterplot(data=df, x="Age", y="Weight", hue="Obesity", palette="bright", s=40) plt.title("Idade vs Peso", fontsize=10) plt.xlabel("Idade", fontsize=9) plt.ylabel("Peso (kg)", fontsize=9) plt.xticks(fontsize=8) plt.yticks(fontsize=8) plt.legend(fontsize=7, loc='upper right') plt.tight_layout() st.pyplot(plt) # Coluna 2 with col2: # Obesidade x Frequência de Atividade Física (FAF) st.markdown("### Obesidade x Atividade Física") plt.figure(figsize=(4, 3)) sns.boxplot(data=df, x="Obesity", y="FAF", palette="Set2") plt.title("FAF por obesidade", fontsize=10) plt.xlabel("Obesidade", fontsize=9) plt.ylabel("FAF", fontsize=9) plt.xticks(rotation=30, fontsize=8) plt.yticks(fontsize=8) plt.tight_layout() st.pyplot(plt) st.markdown("\n") # Heatmap de correlação st.markdown("### Correlação entre variáveis") variaveis = ["Age", "Height", "Weight", "FCVC", "NCP", "CH2O", "FAF", "TUE"] dados_corr = df[variaveis] corr_matrix = dados_corr.corr() plt.figure(figsize=(5, 4)) sns.heatmap(corr_matrix, annot=True, cmap="coolwarm", fmt=".2f", linewidths=0.5, cbar=True) plt.title("Correlação das variáveis", fontsize=10) plt.xticks(fontsize=8) plt.yticks(fontsize=8) plt.tight_layout() st.pyplot(plt)
 
 
 # ABA 3 — SISTEMA PREDITIVO

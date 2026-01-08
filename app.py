@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import seaborn as sns
@@ -12,9 +11,8 @@ best_model = joblib.load("modelo_obesidade.pkl")
 # Configuração da página
 st.set_page_config(page_title="Sistema Preditivo de Obesidade", layout="wide")
 
-# ===============================
+
 # Criar abas
-# ===============================
 tab1, tab2, tab3, tab4 = st.tabs([
     "Problema de Negócio", 
     "Análise Exploratória", 
@@ -23,9 +21,8 @@ tab1, tab2, tab3, tab4 = st.tabs([
 ])
 
 
-# ===============================
+
 # ABA 1 — PROBLEMA DE NEGÓCIO
-# ===============================
 with tab1:
     st.header("Contexto e Problema de Negócio")
     
@@ -48,9 +45,8 @@ with tab1:
     """)
 
 
-# ===============================
-# ABA 2 — ANÁLISE EXPLORATÓRIA (duas colunas)
-# ===============================
+
+# ABA 2 — ANÁLISE EXPLORATÓRIA
 with tab2:
     st.header("Análise Exploratória dos Dados")
     st.markdown("\n")
@@ -58,9 +54,8 @@ with tab2:
     # Criar duas colunas
     col1, col2 = st.columns(2)
 
-    # ---------------------
+
     # Coluna 1
-    # ---------------------
     with col1:
         # Distribuição das classes de obesidade
         st.markdown("### Distribuição das classes de obesidade")
@@ -89,9 +84,8 @@ with tab2:
         plt.tight_layout()
         st.pyplot(plt)
 
-    # ---------------------
+    
     # Coluna 2
-    # ---------------------
     with col2:
         # Obesidade x Frequência de Atividade Física (FAF)
         st.markdown("### Obesidade x Atividade Física")
@@ -121,9 +115,7 @@ with tab2:
         st.pyplot(plt)
 
 
-# ===============================
 # ABA 3 — SISTEMA PREDITIVO
-# ===============================
 with tab3:
     st.header("Sistema Preditivo de Obesidade")
     st.markdown("""
@@ -135,9 +127,8 @@ with tab3:
     with st.form("prediction_form"):
         col1, col2, col3 = st.columns(3)
 
-        # ---------------------
+        
         # Coluna 1 — Dados Pessoais
-        # ---------------------
         with col1:
             st.subheader("Dados Pessoais")
             genero = st.selectbox("Gênero", ["Masculino", "Feminino"])
@@ -145,9 +136,8 @@ with tab3:
             altura = st.slider("Altura (m)", 1.40, 2.10, 1.70)
             peso = st.slider("Peso (kg)", 40.0, 160.0, 70.0)
 
-        # ---------------------
+        
         # Coluna 2 — Hábitos Alimentares
-        # ---------------------
         with col2:
             st.subheader("Hábitos Alimentares")
             historico_familiar = st.selectbox("Histórico familiar de obesidade", ["sim", "não"])
@@ -166,9 +156,8 @@ with tab3:
             ch2o_cat = st.selectbox("Consumo diário de água (CH2O)", ch2o_opcoes)
             ch2o = {"Pouco (0,5 L/dia)": 1, "Moderado (1,0 L/dia)": 2, "Muito (1,5 L/dia)": 3}[ch2o_cat]
 
-        # ---------------------
+       
         # Coluna 3 — Atividade e Estilo de Vida
-        # ---------------------
         with col3:
             st.subheader("Atividade e Estilo de Vida")
             faf_opcoes = ["Pouco (0-1x/semana)", "Moderado (2x/semana)", "Muito (3x+/semana)"]
@@ -212,14 +201,12 @@ with tab3:
             }])
 
             previsao = best_model.predict(input_data)[0]
-            st.success(f"✅ O nível de obesidade previsto é: **{previsao}**")
+            st.success(f"O nível de obesidade previsto é: **{previsao}**")
 
 
 
 
-# ===============================
 # ABA 4 — CONCLUSÕES
-# ===============================
 with tab4:
     st.header("Conclusões e Insights do Modelo")
 
@@ -232,4 +219,3 @@ with tab4:
         - Hábitos alimentares (FAVC, FCVC, CAEC, CALC)  
         - Histórico familiar (family_history)
         """)
-  

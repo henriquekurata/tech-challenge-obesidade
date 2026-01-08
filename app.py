@@ -134,28 +134,26 @@ with tab3:
             altura = st.slider("Altura (m)", 1.40, 2.10, 1.70)
             peso = st.slider("Peso (kg)", 40.0, 160.0, 70.0)
 
-# ---------------------
-# Coluna 2 — Hábitos Alimentares
-# ---------------------
-with col2:
-    st.subheader("Hábitos Alimentares")
-    historico_familiar = st.selectbox("Histórico familiar de obesidade", ["sim", "não"])
-    consumo_calorico = st.selectbox("Consumo frequente de alimentos calóricos", ["sim", "não"])
+        # ---------------------
+        # Coluna 2 — Hábitos Alimentares
+        # ---------------------
+        with col2:
+            st.subheader("Hábitos Alimentares")
+            historico_familiar = st.selectbox("Histórico familiar de obesidade", ["sim", "não"])
+            consumo_calorico = st.selectbox("Consumo frequente de alimentos calóricos", ["sim", "não"])
 
-    fcvc_opcoes = ["Pouco (1 vez/dia)", "Moderado (2 vezes/dia)", "Muito (3 vezes/dia)"]
-    fcvc_cat = st.selectbox("Consumo de vegetais (FCVC)", fcvc_opcoes)
-    fcvc = {"Pouco (1 vez/dia)": 1, "Moderado (2 vezes/dia)": 2, "Muito (3 vezes/dia)": 3}[fcvc_cat]
+            fcvc_opcoes = ["Pouco (1 vez/dia)", "Moderado (2 vezes/dia)", "Muito (3 vezes/dia)"]
+            fcvc_cat = st.selectbox("Consumo de vegetais (FCVC)", fcvc_opcoes)
+            fcvc = {"Pouco (1 vez/dia)": 1, "Moderado (2 vezes/dia)": 2, "Muito (3 vezes/dia)": 3}[fcvc_cat]
 
-    ncp_opcoes = ["Pouco (1 refeição)", "Moderado (2-3 refeições)", "Muito (4 refeições)"]
-    ncp_cat = st.selectbox("Número de refeições (NCP)", ncp_opcoes)
-    ncp = {"Pouco (1 refeição)": 1, "Moderado (2-3 refeições)": 2, "Muito (4 refeições)": 3}[ncp_cat]
+            ncp_opcoes = ["Pouco (1 refeição)", "Moderado (2-3 refeições)", "Muito (4 refeições)"]
+            ncp_cat = st.selectbox("Número de refeições (NCP)", ncp_opcoes)
+            ncp = {"Pouco (1 refeição)": 1, "Moderado (2-3 refeições)": 2, "Muito (4 refeições)": 3}[ncp_cat]
 
-    # Alteração: consumo de água em litros
-    ch2o_opcoes = ["Pouco (0,5 L/dia)", "Moderado (1,0 L/dia)", "Muito (1,5 L/dia)"]
-    ch2o_cat = st.selectbox("Consumo diário de água (CH2O)", ch2o_opcoes)
-    ch2o = {"Pouco (0,5 L/dia)": 1, "Moderado (1,0 L/dia)": 2, "Muito (1,5 L/dia)": 3}[ch2o_cat]
-
-    
+            # Consumo de água em litros
+            ch2o_opcoes = ["Pouco (0,5 L/dia)", "Moderado (1,0 L/dia)", "Muito (1,5 L/dia)"]
+            ch2o_cat = st.selectbox("Consumo diário de água (CH2O)", ch2o_opcoes)
+            ch2o = {"Pouco (0,5 L/dia)": 1, "Moderado (1,0 L/dia)": 2, "Muito (1,5 L/dia)": 3}[ch2o_cat]
 
         # ---------------------
         # Coluna 3 — Atividade e Estilo de Vida
@@ -204,6 +202,7 @@ with col2:
 
             previsao = best_model.predict(input_data)[0]
             st.success(f"✅ O nível de obesidade previsto é: **{previsao}**")
+
 
 
 

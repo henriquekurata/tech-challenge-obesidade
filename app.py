@@ -20,6 +20,8 @@ tab1, tab2, tab3, tab4 = st.tabs([
     "Análise Exploratória", 
     "Sistema Preditivo", 
     "Conclusões"
+])
+
 
 # ===============================
 # ABA 1 — PROBLEMA DE NEGÓCIO

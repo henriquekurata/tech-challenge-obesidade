@@ -42,35 +42,44 @@ with tab1:
 # ===============================
 with tab2:
     st.header("Análise Exploratória dos Dados")
+    
+    # Adiciona espaçamento
+    st.markdown("\n")
 
     # 1️⃣ Distribuição das classes de obesidade
     st.markdown("### Distribuição das classes de obesidade")
-    plt.figure(figsize=(8, 5))
+    plt.figure(figsize=(6, 4))
     sns.countplot(data=df, x="Obesity", palette="pastel", order=df['Obesity'].value_counts().index)
     plt.title("Número de pacientes por nível de obesidade")
     plt.xlabel("Nível de obesidade")
     plt.ylabel("Contagem")
     plt.xticks(rotation=30)
     st.pyplot(plt)
+    
+    st.markdown("\n")
 
-    # 2️⃣ Boxplot de Peso x Nível de obesidade
-    st.markdown("### Peso por nível de obesidade")
-    plt.figure(figsize=(8, 5))
-    sns.boxplot(data=df, x="Obesity", y="Weight", palette="Set2")
-    plt.title("Distribuição do peso por nível de obesidade")
+    # 2️⃣ Obesidade x Frequência de Atividade Física (FAF)
+    st.markdown("### Obesidade x Frequência de Atividade Física (FAF)")
+    plt.figure(figsize=(6, 4))
+    sns.boxplot(data=df, x="Obesity", y="FAF", palette="Set2")
+    plt.title("Distribuição da frequência de atividade física por nível de obesidade")
     plt.xlabel("Nível de obesidade")
-    plt.ylabel("Peso (kg)")
+    plt.ylabel("Atividade física (FAF)")
     plt.xticks(rotation=30)
     st.pyplot(plt)
+    
+    st.markdown("\n")
 
     # 3️⃣ Scatter plot: Idade x Peso colorido por nível de obesidade
     st.markdown("### Relação entre Idade e Peso")
-    plt.figure(figsize=(8, 5))
-    sns.scatterplot(data=df, x="Age", y="Weight", hue="Obesity", palette="bright", s=80)
+    plt.figure(figsize=(6, 4))
+    sns.scatterplot(data=df, x="Age", y="Weight", hue="Obesity", palette="bright", s=60)
     plt.title("Idade vs Peso por nível de obesidade")
     plt.xlabel("Idade")
     plt.ylabel("Peso (kg)")
     st.pyplot(plt)
+    
+    st.markdown("\n")
 
     # 4️⃣ Heatmap de correlação das variáveis numéricas
     st.markdown("### Correlação entre variáveis preditivas")
@@ -82,7 +91,7 @@ with tab2:
     dados_corr = df[variaveis]
     corr_matrix = dados_corr.corr()
 
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(8, 5))
     sns.heatmap(corr_matrix, annot=True, cmap="coolwarm", fmt=".2f", linewidths=0.5, cbar=True)
     plt.title("Correlação entre variáveis do sistema preditivo")
     plt.tight_layout()

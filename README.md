@@ -78,7 +78,7 @@ Foi gravado um vídeo demonstrando:
 - Impacto do projeto para a área da saúde
 - 
 **Link da apresentação:**  
-()
+(https://drive.google.com/file/d/1X6d0uOqRVOKS9gmeA_cvO1ihQwDlAjbA/view)
 ---
 
 ## Tecnologias Utilizadas
